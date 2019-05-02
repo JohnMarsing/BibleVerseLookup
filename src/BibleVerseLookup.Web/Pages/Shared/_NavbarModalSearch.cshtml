@@ -1,0 +1,169 @@
+﻿@using BibleVerseLookup.Web.Pages.Shared.Constants
+
+@{
+	//int MinChapterBeg = 1;
+	int maxChapterBeg = 150;
+	int minChapterEnd = 1;
+	int maxChapterEnd = 150;
+	int minVerseBeg = 1;
+	int maxVerseBeg = 176;
+	int minVerseEnd = 1;
+	int maxVerseEnd = 176;
+	bool AutoSuggested = false;
+}
+
+<!-- Modal -->
+<div class="modal fade" id="@Modal.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-binoculars"></i> Verse Lookup - Client Side</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+
+				<form method="get" action="/Verse/ToDoAddUrl" class="needs-validation" novalidate>
+
+					<div class="form-row  mb-3">
+						<div class="col-2 ">
+							<label for="Book" class="form-control col-form-label">Book</label>
+						</div>
+						<div class="col-10 ">
+							@if (AutoSuggested)
+							{
+								<input id="Book" type="text" list="books" class="form-control" required />
+								<datalist id="books">
+									<partial name="@SharedPartialViews.BookDataList"> />
+								</datalist>
+							}
+							else
+							{
+								<select for="Book" class="form-control">
+									<partial name="@SharedPartialViews.BookSelectList2"> />
+								</select>
+							}
+							<div class="invalid-feedback">Please select book</div>
+						</div>
+					</div>
+
+					<div class="form-row my-3">
+
+						<div class="col-2">
+							<div class="input-group ">
+								<input id="ChapterBeg" type="number"
+											 min="1" max="@maxChapterBeg" class="form-control text-center" required aria-describedby="VerseRange_ChapterBeg" />
+								<div class="invalid-feedback">Chapter?</div>
+							</div>
+
+						</div>
+
+						<div class="col-1 ">
+							<div class="text-center">
+								<h3><span class="badge badge-light"><b>:</b></span></h3>
+							</div>
+						</div>
+
+						<div class="col-2">
+							<div class="input-group ">
+								<input id="VerseBeg" type="number"
+											 min="@minVerseBeg" max="@maxVerseBeg" class="form-control text-center " required />
+								<div class="invalid-feedback">Verse?</div>
+							</div>
+						</div>
+
+						<div class="col-1 ">
+							<div class="text-center">
+								<h3><span class="badge badge-light"><b>-</b></span></h3>
+							</div>
+						</div>
+
+						<div class="col-2">
+							<div class="input-group ">
+								<input id="ChapterEnd" type="number"
+											 min="@minChapterEnd" max="@maxChapterEnd" class="form-control text-center" required aria-describedby="VerseRange_ChapterEnd" />
+								<div class="invalid-feedback">Chapter?</div>
+							</div>
+						</div>
+
+						<div class="col-1 ">
+							<div class="text-center">
+								<h3><span class="badge badge-light"><b>:</b></span></h3>
+							</div>
+						</div>
+
+
+						<div class="col-2">
+							<div class="input-group ">
+								<input id="VerseEnd" type="number"
+											 min="@minVerseEnd" max="@maxVerseEnd" class="form-control text-center" required />
+								<div class="invalid-feedback">Verse?</div>
+							</div>
+						</div>
+
+						<div class="col-1 ">
+							<button type="button" class="btn btn-warning btn-outline-secondary"
+											data-toggle="popover" title="Verse Lookup Help" data-placement="bottom"
+											data-html="true" data-trigger="focus" role="button"
+											data-content="A valid Book name and Chapter/Verse range is required <br /> e.g. Genesis 1:2-3:4">
+								<i class="fa fa-info-circle"></i>
+							</button>
+						</div>
+
+					</div>
+
+					<div class="form-row align-items-baseline mt-2">
+						<div class="col-auto ">
+							<button id="btnSearch" type="submit" class="btn btn-primary">
+								<i class="fa fa-search"></i> Search
+							</button>
+						</div>
+
+						<div class="col-auto">
+							<button type="button" class="btn btn-warning btn-outline-secondary" id="btnReset"
+											data-toggle="popover" title="ToDo: Add JavaScript" data-placement="bottom"
+											data-html="true" data-trigger="focus" role="button"
+											data-content="Using JavaScript, reset the forms to empty values">
+								<i class="fa fa-refresh"></i>
+							</button>
+						</div>
+					</div>
+
+
+				</form>
+
+
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-window-close-o"></i> Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+
+
+
+	// Example starter JavaScript for disabling form submissions if there are invalid fields
+	(function () {
+		'use strict';
+		window.addEventListener('load', function () {
+			// Fetch all the forms we want to apply custom Bootstrap validation styles to
+			var forms = document.getElementsByClassName('needs-validation');
+			// Loop over them and prevent submission
+			var validation = Array.prototype.filter.call(forms, function (form) {
+				form.addEventListener('submit', function (event) {
+					if (form.checkValidity() === false) {
+						event.preventDefault();
+						event.stopPropagation();
+					}
+					form.classList.add('was-validated');
+				}, false);
+			});
+		}, false);
+	})();
+</script>
+

@@ -1,0 +1,18 @@
+﻿@page "/Verse/{verse?}"
+@model BibleVerseLookup.Web.Pages.VerseList.IndexModel
+@{
+	// /Verse/{verse?}/{formatType?}
+	ViewData["Title"] = Model.Title;
+}
+
+@*<div class="text-center"></div>*@
+
+<div class="pb-2 mt-4 mb-2 border-bottom">
+	<h1><i class="fa fa-plane"></i>&nbsp;@ViewData["Title"]</h1>
+</div>
+<h3>@Model.Verse</h3>
+<p><sup>Gen 1:1</sup> In the beginning God created the heavens and the earth</p>
+
+
+
+

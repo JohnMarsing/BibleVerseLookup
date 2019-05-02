@@ -1,0 +1,47 @@
+﻿@page
+@using BibleVerseLookup.Web.Pages.Shared.Constants
+@model BibleVerseLookup.Web.Pages.AboutModel
+@{
+	ViewData["Title"] = "About";
+}
+
+<div class="pb-2 mt-4 mb-2 border-bottom">
+	<h1><span class="fa fa-question"></span> @ViewData["Title"]</h1>
+</div>
+
+<div class="row">
+	<div class="col-sm-6">
+
+		<div class="card" style="width: 18rem;">
+			<img src="~/icons/android-chrome-192x192.png" class="card-img-top" alt="About @Meta.Title">
+			<div class="card-body">
+				<h5 class="card-title">@Meta.Title</h5>
+				<p class="card-text">@Meta.Description</p>
+				<a href="https://myhebrewbible.com" class="btn btn-primary"><i class="fa fa-external-link-square"></i> My Hebrew Bible</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-6">
+		<div itemscope itemtype="http://data-vocabulary.org/Person">
+			<div class="card" style="width: 18rem;">
+				<img src="~/images/JohMarsing30by531.jpg" class="card-img-top" alt="About @Meta.Title">
+				<div class="card-body">
+					<h5 class="card-title">John Marsing</h5>
+
+					<p class="card-text">
+						My name is <span itemprop="name">John Marsing</span> and I am the creator and developer of My Hebrew Bible
+						I live in Phoenix Arizona <span itemprop="title">doing work as a Web and Database Developer</span>
+						at <span itemprop="affiliation">AEAIJ</span>
+					</p>
+					<a href="https://www.myhebrewbible.com/Home/Resume"
+						 class="btn btn-success  stretched-link">
+						<i class="fa fa-external-link-square"></i> Resume
+					</a>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+</div>

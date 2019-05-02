@@ -1,0 +1,182 @@
+﻿@page 
+@*@page "/{test?}/{autosuggested?}"*@
+@model BibleVerseLookup.Web.Pages.ServerSide.IndexModel
+@using BibleVerseLookup.Web.Pages.Shared.Constants
+@using BibleVerseLookup.Web.Models
+
+@{
+	ViewData["Title"] = "Server Side Example";
+	//int MinChapterBeg = 1;
+	int maxChapterBeg = 150;
+	int minChapterEnd = 1;
+	int maxChapterEnd = 150;
+	int minVerseBeg = 1;
+	int maxVerseBeg = 176;
+	int minVerseEnd = 1;
+	int maxVerseEnd = 176;
+}
+
+
+<div class="pb-2 mt-4 mb-2 border-bottom">
+	<h1><span class="fa fa-server"></span> @ViewData["Title"]</h1>
+	<p>Server Side Processing</p>
+</div>
+
+@*
+
+*@
+<form method="post" class="needs-validation" novalidate>
+
+	<div class="form-row  mb-3">
+		<div class="col-2 ">
+			<label asp-for="VerseRange.Book" class="form-control col-form-label">Book</label>
+		</div>
+		<div class="col-10 ">
+			@if (Model.AutoSuggested)
+			{
+				<input asp-for="VerseRange.Book" type="text" list="books" class="form-control" required />
+				<datalist id="books">
+					<partial name="@SharedPartialViews.BookDataList"> />
+				</datalist>
+			}
+			else
+			{
+				<select asp-for="VerseRange.Book" class="form-control">
+					<partial name="@SharedPartialViews.BookSelectList2"> />
+				</select>
+			}
+			<div class="invalid-feedback">Please select book</div>
+		</div>
+	</div>
+
+
+	<div class="form-row my-3">
+
+		<div class="col-2">
+			<div class="input-group ">
+				<input asp-for="VerseRange.ChapterBeg" type="number"
+							 min="1" max="@maxChapterBeg" class="form-control text-center" required aria-describedby="VerseRange_ChapterBeg" />
+				<div class="invalid-feedback">Chapter?</div>
+			</div>
+
+		</div>
+
+		<div class="col-1 ">
+			<div class="text-center">
+				<h3><span class="badge badge-light"><b>:</b></span></h3>
+			</div>
+		</div>
+
+		<div class="col-2">
+			<div class="input-group ">
+				<input asp-for="VerseRange.VerseBeg" type="number"
+							 min="@minVerseBeg" max="@maxVerseBeg" class="form-control text-center " required />
+				<div class="invalid-feedback">Verse?</div>
+			</div>
+		</div>
+
+		<div class="col-1 ">
+			<div class="text-center">
+				<h3><span class="badge badge-light"><b>-</b></span></h3>  @* badge-secondary *@
+			</div>
+		</div>
+
+		<div class="col-2">
+			<div class="input-group ">
+				<input asp-for="VerseRange.ChapterEnd" type="number"
+							 min="@minChapterEnd" max="@maxChapterEnd" class="form-control text-center" required aria-describedby="VerseRange_ChapterEnd" />
+				<div class="invalid-feedback">Chapter?</div>
+			</div>
+		</div>
+
+		<div class="col-1 ">
+			<div class="text-center">
+				<h3><span class="badge badge-light"><b>:</b></span></h3>
+			</div>
+		</div>
+
+
+		<div class="col-2">
+			<div class="input-group ">
+				<input asp-for="VerseRange.VerseEnd" type="number"
+							 min="@minVerseEnd" max="@maxVerseEnd" class="form-control text-center" required />
+				<div class="invalid-feedback">Verse?</div>
+			</div>
+		</div>
+
+		<div class="col-1 ">
+			<button type="button" class="btn btn-warning btn-outline-secondary"
+							data-toggle="popover" title="Verse Lookup Help" data-placement="bottom"
+							data-html="true" data-trigger="focus" role="button"
+							data-content="A valid Book name and Chapter/Verse range is required <br /> e.g. Genesis 1:2-3:4">
+				<i class="fa fa-info-circle"></i>
+
+			</button>
+		</div>
+
+	</div>
+
+	<div class="form-row align-items-baseline mt-2">
+		<div class="col-auto ">
+			<button asp-page-handler="Normal" id="btnSearch" class="btn btn-primary"><i class="fa fa-search"></i> Search</button>
+		</div>
+		<div class="col-auto">
+			<button asp-page-handler="Reset" id="btnReset" class="btn btn-outline-primary"><i class="fa fa-refresh"></i> Reset</button>
+		</div>
+	</div>
+
+
+</form>
+
+<br />
+<hr class="info" />
+
+<h4>Example Links</h4>
+<div class="shadow p-3 mb-5 bg-white rounded">
+	<ul>
+		<li><a asp-page="@Anchors.ServerSide.Index" asp-route-test="@TestCase.Gen_1_1_1" asp-route-autosuggested="true"> <i>Genesis 1:1-1</i></a></li>
+		<li><a asp-page="@Anchors.ServerSide.Index" asp-route-test="@TestCase.Gen_1_1_2" asp-route-autosuggested="true"> <i>Genesis 1:1-2</i></a></li>
+		<li><a asp-page="@Anchors.ServerSide.Index" asp-route-test="@TestCase.Gen_1_2_2_1" asp-route-autosuggested="true"> <i>Genesis 1:2-2:1</i></a></li>
+		<li><a asp-page="@Anchors.ServerSide.Index" asp-route-test="@TestCase.Gen_1_3_2_1" asp-route-autosuggested="true"> <i>Genesis 1:3-2:1</i></a></li>
+		<li><a asp-page="@Anchors.ServerSide.Index" asp-route-test="@TestCase.Gen_1_2_2_1" asp-route-autosuggested="false"> <i>Genesis 1:2-2:1</i> (Select List)</a></li>
+	</ul>
+</div>
+
+<h5 class="text-black-50">Settings</h5>
+<div class="shadow p-3 mb-5 bg-white rounded">
+	<p><i>Bible Verse Lookup Auto Suggested: <b>@Model.AutoSuggested</b></i></p>
+</div>
+
+
+
+@*
+	IF LEFT UNCOMMENTED, IT INTERFERES WITH THE NATIVE HTML5 VALIDATION MESSAGES
+
+	@section Scripts {
+		@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+	}
+
+*@
+
+
+<script>
+	// Example starter JavaScript for disabling form submissions if there are invalid fields
+	(function () {
+		'use strict';
+		window.addEventListener('load', function () {
+			// Fetch all the forms we want to apply custom Bootstrap validation styles to
+			var forms = document.getElementsByClassName('needs-validation');
+			// Loop over them and prevent submission
+			var validation = Array.prototype.filter.call(forms, function (form) {
+				form.addEventListener('submit', function (event) {
+					if (form.checkValidity() === false) {
+						event.preventDefault();
+						event.stopPropagation();
+					}
+					form.classList.add('was-validated');
+				}, false);
+			});
+		}, false);
+	})();
+</script>
+

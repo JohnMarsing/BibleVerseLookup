@@ -1,0 +1,44 @@
+﻿@using BibleVerseLookup.Web.Pages.Shared.Constants
+@inject Microsoft.AspNetCore.Hosting.IHostingEnvironment env
+
+@functions
+{
+public String VP(string size)
+{
+	if (env.EnvironmentName == "Development")
+	{
+		return "<sup> " + size + "</sup>";
+	}
+	else
+	{
+		return "";
+	}
+}
+}
+
+<div class="d-sm-none">
+	
+	<a class="navbar-brand" data-toggle="modal" data-target="@Modal.Target" title="<576px">
+		<i class="fa fa-search"></i>@Html.Raw(VP("xp"))
+	</a>
+</div>
+<div class="d-none d-sm-block d-md-none d-lg-none d-xl-none">
+	<a class="navbar-brand" data-toggle="modal" data-target="@Modal.Target" title="≥576px">
+		<i class="fa fa-search"></i>@Html.Raw(VP("sm"))
+	</a>
+</div>
+<div class="d-none d-md-block d-lg-none d-xl-none">
+	<a class="navbar-brand" data-toggle="modal" data-target="@Modal.Target" title="≥768px">
+		<i class="fa fa-search"></i>@Html.Raw(VP("md"))
+	</a>
+</div>
+<div class="d-none d-lg-block d-xl-none">
+	<a class="navbar-brand" data-toggle="modal" data-target="@Modal.Target" title="≥992px">
+		<i class="fa fa-search"></i>@Html.Raw(VP("lg"))
+	</a>
+</div>
+<div class="d-none d-xl-block">
+	<a class="navbar-brand" data-toggle="modal" data-target="@Modal.Target" title="≥1200px">
+		<i class="fa fa-search"></i>@Html.Raw(VP("xl"))
+	</a>
+</div>

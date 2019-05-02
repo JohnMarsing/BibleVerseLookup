@@ -5,7 +5,12 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6F8489AB-CFD1-4455-8922-FC61B920BD77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibleVerseLookup.Web", "src\BibleVerseLookup.Web\BibleVerseLookup.Web.csproj", "{A7A39EC5-D0AE-4C93-B4D1-634FE50E713C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BibleVerseLookup.Web", "src\BibleVerseLookup.Web\BibleVerseLookup.Web.csproj", "{A7A39EC5-D0AE-4C93-B4D1-634FE50E713C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1DB93D5F-E319-428C-89AB-608263E733EF}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +20,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{A7A39EC5-D0AE-4C93-B4D1-634FE50E713C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -33,7 +35,13 @@ Global
 		{A7A39EC5-D0AE-4C93-B4D1-634FE50E713C}.Release|x86.ActiveCfg = Release|Any CPU
 		{A7A39EC5-D0AE-4C93-B4D1-634FE50E713C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A7A39EC5-D0AE-4C93-B4D1-634FE50E713C} = {6F8489AB-CFD1-4455-8922-FC61B920BD77}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B0473EC2-89A1-43EE-971B-3A06E39F22CC}
 	EndGlobalSection
 EndGlobal

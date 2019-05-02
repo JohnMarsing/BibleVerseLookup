@@ -1,0 +1,37 @@
+﻿@page
+@model IndexModel
+
+@{
+	ViewData["Title"] = "Home page";
+}
+
+
+<div class="pb-2 mt-4 mb-2 border-bottom">
+	<h1><span class="fa fa-home"></span> @ViewData["Title"]</h1>
+</div>
+
+<p>ToDo: define the purpose of this OSS Project</p>
+
+<h4>Notes</h4>
+<div class="shadow p-3 mb-5 bg-white rounded">
+	<ul>
+		<li>
+			In addition to trying to figure out how to get my <b>Verse Lookup</b> JQuery solution to work I'm also playing around with Bootstrap 4.
+			<ul>
+				<li>This Page uses this <i>shaddow</i> class </li>
+				<li>About Page uses the <i>card</i> class</li>
+			</ul>
+		</li>
+		<li>
+			This is also an ASP.Net Razor Page Core 2.0 template I use.
+			<ul>
+				<li>Shared Views: _Favicon.cshtml, _Meta.cshtml, _Navbar.cshtml</li>
+				<li><b>Anchor.cs</b> static class to remove magic strings to navigation anchors</li>
+				<li><b>_ViewImports</b>: addTagHelper *, BibleVerseLookup.Web<i></i></li>
+				<li>Startup: <i>options.Conventions.AddPageRoute(Pages.Anchors.Home.Index</i></li>
+				<li>NavBar: </li>
+			</ul>
+		</li>
+		<li>....</li>
+	</ul>
+</div>

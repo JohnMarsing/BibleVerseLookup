@@ -24,3 +24,8 @@ FROM BookChapter bc
 SELECT ID, LastChapter 
 , '{id: ' + CAST(ID AS VARCHAR(2)) + ', lastchapter: ' + CAST(LastChapter AS VARCHAR(3)) + ' },'   AS CodeGen
 FROM Book
+
+--_BoodDataList2.chstml
+SELECT '<option data-value="' + CAST(ID AS VARCHAR(2)) + '">' + Title + '</option>' AS SelectList
+FROM Book
+ORDER BY ID

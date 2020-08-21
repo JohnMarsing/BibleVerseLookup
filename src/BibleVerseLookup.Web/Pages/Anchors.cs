@@ -19,5 +19,10 @@
 			//public const string ChangeFormat = "/VerseList/ChangeFormat";
 		}
 
+		public static class ConditionalLinqQueryEngine
+		{
+			public const string Index = "/ConditionalLinqQueryEngine/Index";
+		}
+
 	}
 }

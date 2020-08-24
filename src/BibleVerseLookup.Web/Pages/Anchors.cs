@@ -24,5 +24,18 @@
 			public const string Index = "/ConditionalLinqQueryEngine/Index";
 		}
 
+		public static class SelectList
+		{
+			public const string Index = "/SelectList/Index";
+		}
+
+	}
+}
+
+namespace BibleVerseLookup.Web.Pages
+{
+	public static class GlobalSharedPartialViews
+	{
+		public const string Message = "_Message";
 	}
 }

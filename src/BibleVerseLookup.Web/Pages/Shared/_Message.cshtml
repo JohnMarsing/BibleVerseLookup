@@ -1,0 +1,16 @@
+﻿@model string
+@{
+	//ViewData["dismiss"] = true;
+	//bool IsDismissable = (ViewData[VDD.IsDismissable] == null) ? false : (bool)ViewData[VDD.IsDismissable];
+	//string AlertStyle = (ViewData[VDD.AlertStyle] == null) ? MyHebrewBible.Web.Core.Alerts.AlertStyles.Information : (bool)ViewData[VDD.AlertStyles];
+}
+@if (!String.IsNullOrEmpty(@Model))
+{
+	@* <div class="d-none d-print-block"> </div> Wrapping this prevented the message to show in non print view *@
+
+	<div class="alert alert-warning " alert-dismissable"" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		@Html.Raw(@Model)
+	</div>
+
+}

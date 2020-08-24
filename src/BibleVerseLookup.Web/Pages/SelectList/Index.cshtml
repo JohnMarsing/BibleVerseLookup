@@ -1,0 +1,48 @@
+﻿@page
+@model BibleVerseLookup.Web.Pages.SelectList.IndexModel
+@{
+	ViewData["Title"] = "Select List Helper";
+}
+
+<partial name=@GlobalSharedPartialViews.Message for="Message" />
+
+<div class="pb-2 mt-4 mb-2 border-bottom">
+	<h1><span class="fa fa-star-half-empty"></span> @ViewData["Title"]</h1>
+</div>
+
+<form action="" method="post" class="mt-5">
+	<label asp-for="Current.Id">
+		Order #@Model.Current.Id (@Model.Current.OrderedAt.ToShortDateString())
+		<input type="hidden" asp-for="Current.Id" />
+		<input type="hidden" asp-for="Current.OrderedAt" />
+	</label>
+	<label asp-for="Current.Username">
+		<input type="hidden" asp-for="Current.Username" />
+	</label>
+
+	<label asp-for="Current.Status">
+	</label>
+	<select asp-for="Current.Status" asp-items="Model.Statuses">
+	</select>
+	<button type="submit">Save Order</button>
+</form>
+
+
+<h3 class="text-success mt-5">Inspiration</h3>
+	<ul class="lead">
+		<li>
+			<b>Blog</b>: <code>https://khalidabuhakmeh.com/use-select-dropdown-in-aspdotnet-razor</code> by 
+			<a href="https://khalidabuhakmeh.com/">Khalid Abuhakmeh</a> <i class="fa fa-external-link-square"></i>
+		</li>
+	</ul>
+
+
+<h3 class="text-danger mt-5">Gotcha's</h3>
+<ul>
+	<li>Do NOT add any additional HTML tags inside your select HTML element. ASP.NET will not function because you are overriding its natural behavior.</li>
+	<li>SelectListItem has more properties, and we can utilize them to make for more user-friendly UIs.</li>
+	<li>Remember to use BindProperty, or your Razor Page will not function.</li>
+	<li>name attributes are important. Without them, your data will not make it to the server.</li>
+	<li>The enum type might not be structurally sufficient to provide us with the metadata we want, like display names, groups, etc.</li>
+	<li>Our form needs a submit input type, or nothing will happen when we click our button.</li>
+</ul>
